@@ -1,0 +1,18 @@
+[
+  {
+    "title": "a",
+    "author": "b",
+    "isbn": "c",
+    "available": true,
+    "checked_out_by": null,
+    "checked_out_date": null
+  },
+  {
+    "title": "book",
+    "author": "jatin singh",
+    "isbn": "123",
+    "available": true,
+    "checked_out_by": null,
+    "checked_out_date": null
+  }
+]
