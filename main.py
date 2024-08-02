@@ -9,10 +9,12 @@ class LibrarySystem:
         self.users = UserManager()
 
     def main_menu(self) -> int:
-        print("\nLibrary Management System")
+        print("\n--------------------------------------------------")
+        print("Library Management System")
         print("1. Book operations (add, search, update, checkout)")
         print("2. User Operations")
         print("3. Exit")
+        print("--------------------------------------------------")
         choice = int(input("Enter choice: "))
         return choice
 
@@ -20,6 +22,7 @@ class LibrarySystem:
         while True:
             choice = self.main_menu()
             if choice == 1:
+                print("--------------------------------------------------")
                 print("1. List Books")
                 print("2. Add Book")
                 print("3. Checkout Book")
@@ -28,11 +31,12 @@ class LibrarySystem:
                 print("6. Search Book")
                 print("7. Delete Book")
                 print("8. Return to main menu")
+                print("--------------------------------------------------")
 
                 sub_choice = int(input("Enter choice: "))
                 if sub_choice == 1:
                     self.books.list_books()
-                if sub_choice == 2:
+                elif sub_choice == 2:
                     self.books.add_book()
                 elif sub_choice == 3:
                     self.books.checkout_book()
@@ -51,6 +55,7 @@ class LibrarySystem:
                     print("Invalid choice, please try again.")
 
             elif choice == 2:
+                print("--------------------------------------------------")
                 print("1. List Users")
                 print("2. Get User")
                 print("3. Add User")
@@ -58,6 +63,7 @@ class LibrarySystem:
                 print("5. Delete User")
                 print("6. Search User")
                 print("7. Return to main menu")
+                print("--------------------------------------------------")
 
                 sub_choice = int(input("Enter choice: "))
 

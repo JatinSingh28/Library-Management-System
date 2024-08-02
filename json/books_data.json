@@ -14,5 +14,13 @@
     "available": true,
     "checked_out_by": null,
     "checked_out_date": null
+  },
+  {
+    "title": "neww bookk",
+    "author": "jatinn",
+    "isbn": "288",
+    "available": true,
+    "checked_out_by": null,
+    "checked_out_date": null
   }
 ]
