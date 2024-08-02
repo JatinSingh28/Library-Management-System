@@ -1,7 +1,5 @@
-# This is a deliberately poorly implemented main script for a Library Management System.
 from managers.bookManager import BooksManager
 from managers.userManager import UserManager
-
 
 class LibrarySystem:
     def __init__(self):

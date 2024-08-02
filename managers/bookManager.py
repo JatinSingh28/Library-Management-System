@@ -6,21 +6,24 @@ logger = setup_logger()
 
 
 class BooksManager:
+    """
+    Manages a collection of books, including loading, saving, and operations on books.
+    """
+
     def __init__(self):
+        """
+        Initializes the BooksManager by loading books and indices.
+        """
         self.books = []
         self.load_books()
-        # self.title_index = {}
-        # self.isbn_index = {}
-        # self.author_index = {}
-        # self.load_author_index()
-        # self.load_title_index()
-        # self.load_isbn_index()
         self.load_indices()
-        # self.isbn_index = {}
-        # self.title_index = {}
-        # self.author_index = {}
 
     def load_books(self):
+        """
+        Loads books from a JSON file.
+        Input: None
+        Output: None
+        """
         try:
             with open("json/books_data.json", "r") as f:
                 books_data = json.load(f)
@@ -31,6 +34,12 @@ class BooksManager:
             )
 
     def load_indices(self):
+        """
+        Loads title, ISBN, and author indices from JSON files.
+        Input: None
+        Output: None
+        """
+        # Loading title index
         try:
             with open("json/book_title_index.json", "r") as f:
                 title_index = json.load(f)
@@ -40,7 +49,7 @@ class BooksManager:
                 f"An error occurred while loading title index. Try restarting the program because some functionalities won't work: {e}"
             )
 
-        # def load_isbn_index(self):
+        # Loading ISBN index
         try:
             with open("json/book_isbn_index.json", "r") as f:
                 isbn_index = json.load(f)
@@ -50,7 +59,7 @@ class BooksManager:
                 f"An error occurred while loading isbn index. Try restarting the program because some functionalities won't work: {e}"
             )
 
-        # def load_author_index(self):
+        # Loading author index
         try:
             with open("json/book_author_index.json", "r") as f:
                 author_index = json.load(f)
@@ -61,6 +70,11 @@ class BooksManager:
             )
 
     def save_indices(self):
+        """
+        Saves title, ISBN, and author indices to JSON files.
+        Input: None
+        Output: None
+        """
         try:
             with open("json/book_title_index.json", "w") as f:
                 json.dump(self.title_index, f, indent=2)
@@ -80,6 +94,11 @@ class BooksManager:
             logger.error(f"An error occurred while saving author index: {e}")
 
     def save_books(self):
+        """
+        Saves the current list of books to a JSON file.
+        Input: None
+        Output: None
+        """
         try:
             with open("json/books_data.json", "w") as f:
                 json.dump([book.to_dict() for book in self.books], f, indent=2)
@@ -87,6 +106,11 @@ class BooksManager:
             logger.error(f"An error occurred while saving books: {e}")
 
     def rebuild_indices(self):
+        """
+        Rebuilds all indices (ISBN, title, author) based on the current list of books.
+        Input: None
+        Output: None
+        """
         self.isbn_index.clear()
         self.title_index.clear()
         self.author_index.clear()
@@ -97,6 +121,11 @@ class BooksManager:
         self.save_indices()
 
     def add_book(self):
+        """
+        Adds a new book to the collection based on user input.
+        Input: None (gets input from user)
+        Output: None
+        """
         title = input("Enter title: ")
         author = input("Enter author: ")
         isbn = input("Enter ISBN: ")
@@ -113,6 +142,11 @@ class BooksManager:
             logger.error(f"An error occurred while adding book: {e}")
 
     def list_books(self):
+        """
+        Lists all books in the collection.
+        Input: None
+        Output: None
+        """
         if len(self.books) == 0:
             print("No books found.")
             return
@@ -122,6 +156,11 @@ class BooksManager:
             print(book)
 
     def checkout_book(self):
+        """
+        Checks out a book to a user based on ISBN.
+        Input: None (gets input from user)
+        Output: None
+        """
         user_id = input("Enter user ID: ")
         isbn = input("Enter ISBN of the book to checkout: ")
         try:
@@ -136,6 +175,11 @@ class BooksManager:
             logger.error(f"An error occurred while checking out book: {e}")
 
     def checkin_book(self):
+        """
+        Checks in a book based on ISBN.
+        Input: None (gets input from user)
+        Output: None
+        """
         isbn = input("Enter ISBN of the book to checkin: ")
         try:
             for book in self.books:
@@ -149,6 +193,11 @@ class BooksManager:
             logger.error(f"An error occurred while checking in book: {e}")
 
     def search_book(self):
+        """
+        Searches for books based on title, author, or ISBN.
+        Input: None (gets input from user)
+        Output: None
+        """
         print("PRESS ENTER TO LEAVE EMPTY")
         title = input("Enter title: ")
         author_name = input("Enter Author name: ")
@@ -188,6 +237,11 @@ class BooksManager:
             logger.error(f"An error occurred while searching book: {e}")
 
     def update_book(self):
+        """
+        Updates a book's title or author based on ISBN.
+        Input: None (gets input from user)
+        Output: None
+        """
         isbn = input("Enter ISBN: ")
         try:
             for book in self.books:
@@ -205,6 +259,11 @@ class BooksManager:
             logger.error(f"An error occurred while updating book: {e}")
 
     def delete_book(self):
+        """
+        Deletes a book based on ISBN.
+        Input: None (gets input from user)
+        Output: None
+        """
         isbn = input("Enter ISBN: ")
         try:
             index = self.isbn_index[isbn]
